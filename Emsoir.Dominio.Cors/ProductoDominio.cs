@@ -107,15 +107,23 @@ namespace Emsoir.Dominio.Cors
         public Response<bool> ValidarProducto(Producto obj)
         {
             Response<bool> Response = new Response<bool>();
-            if (obj.Codigo== "" || obj.Costo==0 || obj.CantidadMinima==0 || obj.Nombre=="" || obj.Modelo=="")
+            if (obj.Codigo== "" || obj.Costo==0 || obj.Nombre=="" || obj.Modelo=="" || obj.PrecioVenta==0)
             {
                 Response.Data = false;
                 Response.IsSuccess = false;
                 Response.Mensaje = "Debe ingresar todos sus datos!";
                 return Response;
             }
+            else if (obj.PrecioVenta <= obj.Costo)
+            {
+                Response.Data = false;
+                Response.IsSuccess = false;
+                Response.Mensaje = "El precio de venta no debe ser menor que el costo";
+                return Response;
+            }
             else if (_Irepository.GetList().Where(x => x.Codigo == obj.Codigo).Count() > 0)
             {
+                Response.Data = false;
                 Response.IsSuccess = false;
                 Response.Mensaje = "Este Registro ya existe";
                 return Response;
