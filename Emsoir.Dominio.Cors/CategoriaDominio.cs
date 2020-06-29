@@ -20,14 +20,13 @@ namespace Emsoir.Dominio.Cors
         public Response<bool> Add(Categoria entity)
         {
             Response<bool> Response = new Response<bool>();
-            var cantidad = _Irepository.GetList().Where(x => x.Descripcion == entity.Descripcion).Count();
+            var Validar = ValidarCategoria(entity);
             try
             {
-                if (cantidad > 0)
+                if (!Validar.IsSuccess)
                 {
-                    Response.IsSuccess = false;
-                    Response.Mensaje = "Este Registro ya existe";
-                    return Response;
+                    
+                    return Validar;
                 }
                 Response.Data = _Irepository.Add(entity);
                 if (Response.Data)
@@ -101,6 +100,33 @@ namespace Emsoir.Dominio.Cors
                 Response.Mensaje = ex.Message;
             }
             return Response;
+        }
+
+        public Response<bool> ValidarCategoria(Categoria obj)
+        {
+            Response<bool> Response = new Response<bool>();
+            if (obj.Descripcion=="")
+            {
+                Response.Data = false;
+                Response.IsSuccess = false;
+                Response.Mensaje = "Debe ingresar todos sus datos!";
+                return Response;
+            }
+            else if (_Irepository.GetList().Where(x => x.Descripcion == obj.Descripcion).Count()>0)
+            {
+                Response.IsSuccess = false;
+                Response.Mensaje = "Este Registro ya existe";
+                return Response;
+            }
+            else
+            {
+                Response.IsSuccess = true;
+                Response.Mensaje = "ok";
+                return Response;
+            }
+
+           
+
         }
     }
 }

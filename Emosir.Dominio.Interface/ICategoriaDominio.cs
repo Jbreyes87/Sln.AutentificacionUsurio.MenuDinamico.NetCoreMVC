@@ -13,5 +13,7 @@ namespace Emosir.Dominio.Interface
         Categoria GetById(int id);
         Response<bool> Update(Categoria entity);
         Response<bool> Delete(int id);
+
+        Response<bool> ValidarCategoria(Categoria entity);
     }
 }
