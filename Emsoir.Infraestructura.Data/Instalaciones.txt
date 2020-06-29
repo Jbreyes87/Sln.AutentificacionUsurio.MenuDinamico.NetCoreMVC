@@ -1,0 +1,3 @@
+﻿
+1-Microsoft.Extensions.Configuration: esta libreria te ayuda para trabajar con archivos externos
+2-System.Data.SqlClient : esta libreria es para trabajar con la base de datos
