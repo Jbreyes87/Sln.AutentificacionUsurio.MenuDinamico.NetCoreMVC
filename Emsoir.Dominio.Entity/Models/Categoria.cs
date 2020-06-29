@@ -8,6 +8,7 @@ namespace Emsoir.Dominio.Entity
        //[ExplicitKey]
        [Dapper.Contrib.Extensions.Key]
         public int CategoriaId { get; set; }
+        [Required]
         public string Descripcion { get; set; }
         public bool Estado { get; set; }
 
