@@ -2,6 +2,7 @@
 using Emosir.Dominio.Interface;
 using Emsoir.Dominio.Cors;
 using Emsoir.Dominio.Entity;
+using Emsoir.Dominio.Entity.Models;
 using Emsoir.Infraestructura.Data;
 using Emsoir.Infraestructura.Interface;
 using Emsoir.Infraestructura.Repository;
@@ -33,6 +34,8 @@ namespace Crud.Productos
 
             services.AddScoped<ICategoriaDominio, CategoriaDominio>();
             services.AddScoped<Irepository<Categoria>, Repositoy<Categoria>>();
+            services.AddScoped<IProductoDominio,ProductoDominio>();
+            services.AddScoped<Irepository<Producto>, Repositoy<Producto>>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();
