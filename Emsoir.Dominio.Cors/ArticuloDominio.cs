@@ -115,7 +115,7 @@ namespace Emsoir.Dominio.Cors
         public Response<bool> ValidarArticulo(Articulo obj)
         {
             Response<bool> Response = new Response<bool>();
-            if ( obj.Nombre=="")
+            if ( obj.Nombre=="" || obj.FechaCreacion==null)
             {
                 Response.Data = false;
                 Response.IsSuccess = false;

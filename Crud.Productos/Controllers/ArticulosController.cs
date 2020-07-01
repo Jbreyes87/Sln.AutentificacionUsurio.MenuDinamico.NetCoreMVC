@@ -22,8 +22,28 @@ namespace Crud.Productos.Controllers
 
         public IActionResult Index()
         {
-            var lista = _DominioArtciculo.GetListArticulos();
+           
+           
+
             return View();
         }
+
+
+
+        #region WebApi
+
+        [HttpGet]
+        public IActionResult GetList()
+        {
+
+            var lis = _DominioArtciculo.GetListArticulos();
+
+            return Json(new { data = _DominioArtciculo.GetListArticulos()});
+        }
+
+        #endregion
+
+
+
     }
 }

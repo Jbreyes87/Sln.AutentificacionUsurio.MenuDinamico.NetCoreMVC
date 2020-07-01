@@ -20,7 +20,7 @@ namespace Emsoir.Infraestructura.Repository
 
         public List<ArticulosViewModel> GetListArticulos()
         {
-            string sql= @"select b.Nombre,b.Descripcion,b.FechaCreacion,b.UrlImagen,a.Descripcion as NombreCategoria from Categorias a 
+            string sql= @"select b.ArticuloId as Id, b.Nombre,b.Descripcion,b.FechaCreacion,b.UrlImagen,a.Descripcion as NombreCategoria from Categorias a 
                          join Articulos b on a.CategoriaId = b.CategoriaId";
 
             using (var conn = _ConectionFactory.GetConection)
