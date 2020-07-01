@@ -11,11 +11,11 @@ namespace Crud.Productos.Controllers
     public class ArticulosController : Controller
     {
         private readonly IArticuloDominio _Dominio;
-        private readonly IArticuloRepositorio _DominioArtciculo;
+      
    
-        public ArticulosController(IArticuloDominio Dominio, IArticuloRepositorio DominioArtciculo)
+        public ArticulosController(IArticuloDominio Dominio)
         {
-            _DominioArtciculo = DominioArtciculo;
+            //_DominioArtciculo = DominioArtciculo;
             _Dominio = Dominio;
         }
 
@@ -36,10 +36,21 @@ namespace Crud.Productos.Controllers
         public IActionResult GetList()
         {
 
-            var lis = _DominioArtciculo.GetListArticulos();
+            var lis = _Dominio.GetListArticulos();
 
-            return Json(new { data = _DominioArtciculo.GetListArticulos()});
+            return Json(new { data = _Dominio.GetListArticulos()});
         }
+
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+
+            
+
+            return Json(_Dominio.Delete(id));
+        }
+
+     
 
         #endregion
 
