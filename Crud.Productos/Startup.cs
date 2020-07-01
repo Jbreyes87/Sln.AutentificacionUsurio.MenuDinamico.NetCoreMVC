@@ -34,8 +34,9 @@ namespace Crud.Productos
 
             services.AddScoped<ICategoriaDominio, CategoriaDominio>();
             services.AddScoped<Irepository<Categoria>, Repositoy<Categoria>>();
-            services.AddScoped<IProductoDominio,ProductoDominio>();
-            services.AddScoped<Irepository<Producto>, Repositoy<Producto>>();
+            services.AddScoped<IArticuloDominio,ArticuloDominio>();
+            services.AddScoped<Irepository<Articulo>, Repositoy<Articulo>>();
+            services.AddScoped<IArticuloRepositorio, ArticuloRepositorio>();
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddMvc();

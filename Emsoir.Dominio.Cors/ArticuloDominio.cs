@@ -1,6 +1,7 @@
 ﻿using Emosir.Dominio.Interface;
 using Emsoir.Dominio.Entity;
 using Emsoir.Dominio.Entity.Models;
+using Emsoir.Dominio.Entity.ViewModels;
 using Emsoir.Infraestructura.Interface;
 using System;
 using System.Collections.Generic;
@@ -9,20 +10,22 @@ using System.Text;
 
 namespace Emsoir.Dominio.Cors
 {
-   public class ProductoDominio:IProductoDominio
+   public class ArticuloDominio:IArticuloDominio
     {
 
-        private readonly Irepository<Producto> _Irepository;
-        public ProductoDominio(Irepository<Producto> Irepository)
+        private readonly Irepository<Articulo> _Irepository;
+        private readonly IArticuloRepositorio _IArticulo;
+        public ArticuloDominio(Irepository<Articulo> Irepository, IArticuloRepositorio IArticulo)
         {
             _Irepository = Irepository;
+            _IArticulo = IArticulo;
         }
 
 
-        public Response<bool> Add(Producto entity)
+        public Response<bool> Add(Articulo entity)
         {
             Response<bool> Response = new Response<bool>();
-            var Validar = ValidarProducto(entity);
+            var Validar = ValidarArticulo(entity);
             try
             {
                 if (!Validar.IsSuccess)
@@ -71,17 +74,22 @@ namespace Emsoir.Dominio.Cors
             return Response;
         }
 
-        public Producto GetById(int id)
+        public Articulo GetById(int id)
         {
             return _Irepository.GetById(id);
         }
 
-        public IEnumerable<Producto> GetList()
+        public IEnumerable<Articulo> GetList()
         {
             return _Irepository.GetList();
         }
 
-        public Response<bool> Update(Producto entity)
+        public List<ArticulosViewModel> GetListArticulos()
+        {
+            return _IArticulo.GetListArticulos();
+        }
+
+        public Response<bool> Update(Articulo entity)
         {
             Response<bool> Response = new Response<bool>();
 
@@ -104,24 +112,18 @@ namespace Emsoir.Dominio.Cors
             return Response;
         }
 
-        public Response<bool> ValidarProducto(Producto obj)
+        public Response<bool> ValidarArticulo(Articulo obj)
         {
             Response<bool> Response = new Response<bool>();
-            if (obj.Codigo== "" || obj.Costo==0 || obj.Nombre=="" || obj.Modelo=="" || obj.PrecioVenta==0)
+            if ( obj.Nombre=="")
             {
                 Response.Data = false;
                 Response.IsSuccess = false;
                 Response.Mensaje = "Debe ingresar todos sus datos!";
                 return Response;
             }
-            else if (obj.PrecioVenta <= obj.Costo)
-            {
-                Response.Data = false;
-                Response.IsSuccess = false;
-                Response.Mensaje = "El precio de venta no debe ser menor que el costo";
-                return Response;
-            }
-            else if (_Irepository.GetList().Where(x => x.Codigo == obj.Codigo).Count() > 0)
+       
+            else if (_Irepository.GetList().Where(x => x.Nombre == obj.Nombre).Count() > 0)
             {
                 Response.Data = false;
                 Response.IsSuccess = false;
