@@ -9,6 +9,17 @@
         width: 200px;
     }
 </style>
+<div class="d-flex mb-2">
+    <div class="p-2 ">
+        <h3>
+            Lista de Articulos
+        </h3>
+    </div>
+
+    <div class="ml-auto p-2 ">
+        <a class="btn btn-primary" asp-action="Create"><i class='bx bxs-plus-square'></i>&nbsp Nuevo Articulo</a>
+    </div>
+</div>
 
 
 
@@ -22,10 +33,10 @@
                     <th>Descripcion</th>
                     <th>Fecha</th>
                     <th>Categoria</th>
-                    <th ></th>
+                    <th></th>
                 </tr>
             </thead>
-         
+
         </table>
     </div>
 </div>
@@ -59,14 +70,14 @@
                         "data": "id",
                         "render": function (data) {
                             return `<div class="text-center">
-                            <a href='/Articulos/Edit/${data}' class='btn btn-primary text-white'  width:30px;'>
-                            <i class='bx bxs-edit'></i>
-                            </a>
-                            &nbsp;
-                            <a onclick=Delete("/Articulos/Delete/${data}") class='btn btn-danger text-white'  width:50px;'>
-                            <i class='bx bxs-trash'></i>
-                            </a>
-                            `;
+                                <a href='/Articulos/Edit/${data}' class='btn btn-primary text-white'  width:30px;'>
+                                <i class='bx bxs-edit'></i>
+                                </a>
+                                &nbsp;
+                                <a onclick=Delete("/Articulos/Delete/${data}") class='btn btn-danger text-white'  width:50px;'>
+                                <i class='bx bxs-trash'></i>
+                                </a>
+                                `;
                         }, "width": "10%"
                     }
                 ],
@@ -116,33 +127,9 @@
             })
 
         }
-           
 
-        //function Delete(url) {
-        //    swal({
-        //        title: "Esta seguro de borrar?",
-        //        text: "Este contenido no se puede recuperar!",
-        //        type: "warning",
-        //        showCancelButton: true,
-        //        confirmButtonColor: "#DD6B55",
-        //        confirmButtonText: "Si, borrar!",
-        //        closeOnconfirm: true
-        //    }, function () {
-        //        $.ajax({
-        //            type: 'DELETE',
-        //            url: url,
-        //            success: function (data) {
-        //                if (data.) {
-        //                    toastr.success(data.message);
-        //                    dataTable.ajax.reload();
-        //                }
-        //                else {
-        //                    toastr.error(data.message);
-        //                }
-        //            }
-        //        });
-        //    });
-        //}
+
+
 
     </script>
 

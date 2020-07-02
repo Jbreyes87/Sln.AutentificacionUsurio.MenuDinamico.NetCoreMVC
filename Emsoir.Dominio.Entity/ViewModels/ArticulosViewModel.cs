@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Emsoir.Dominio.Entity.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web.Mvc;
 
 namespace Emsoir.Dominio.Entity.ViewModels
 {
@@ -15,6 +17,15 @@ namespace Emsoir.Dominio.Entity.ViewModels
         public string UrlImagen { get; set; }
 
         public string NombreCategoria { get; set; }
+
+    }
+
+    public class ArticulosViewModelCreate
+    {
+
+        public Articulo Articulo { get; set; }
+
+        public IEnumerable<Categoria> ListaCategorias { get; set; }
 
     }
 }
