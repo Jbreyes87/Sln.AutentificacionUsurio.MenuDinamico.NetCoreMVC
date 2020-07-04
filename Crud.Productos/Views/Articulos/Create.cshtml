@@ -60,7 +60,7 @@
                         <div class="col-md-8">
 
                             <img id="ContenedorImagen" src="#" class="mx-auto d-block " style="width:220px;height:200px;">
-                            <input asp-for="Articulo.UrlImagen" type="file" name="UrlImagen">
+                            <input asp-for="Articulo.UrlImagen" type="file" name="UrlImagen" id="UrlImagen">
                             <span asp-validation-for="Articulo.UrlImagen" class="text-danger"></span>
 
 
@@ -84,6 +84,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/LogicaJS/Articulos.js"></script>
 }
 
 

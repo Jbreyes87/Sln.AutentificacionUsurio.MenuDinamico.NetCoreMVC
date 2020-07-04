@@ -32,10 +32,7 @@ namespace Crud.Productos.Controllers
 
         public IActionResult Index()
         {
-           
-           
-
-            return View();
+             return View();
         }
 
         [HttpGet]
@@ -50,6 +47,8 @@ namespace Crud.Productos.Controllers
 
           return View(obj);
         }
+
+
 
         [HttpPost]
         public IActionResult Create(ArticulosViewModelCreate obj) {
