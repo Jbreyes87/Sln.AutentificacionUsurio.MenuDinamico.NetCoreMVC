@@ -21,7 +21,7 @@ namespace Emsoir.Dominio.Entity.Models
         public string Descripcion { get; set; }
         public DateTime FechaCreacion { get; set; }
 
-        [Required]
+       
         public string UrlImagen { get; set; }
 
         public int CategoriaId { get; set; }

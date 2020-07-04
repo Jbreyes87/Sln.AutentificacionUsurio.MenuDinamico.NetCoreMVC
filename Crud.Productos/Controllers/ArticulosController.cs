@@ -140,9 +140,63 @@ namespace Crud.Productos.Controllers
         }
 
 
+        [HttpPost]
+        public IActionResult Edit(ArticulosViewModelCreate valores)
+        {
+            string RutaPrincipal = _IWebHostEnvironment.WebRootPath;
+            Response<bool> Response = new Response<bool>();
 
+            //buscar el articulo en la base de datos
+            Articulo articulo = _Dominio.GetById(valores.Articulo.ArticuloId);
 
-        #endregion
+             //obteniendo request del formulario edit
+            int CategoriaId =Convert.ToInt32(HttpContext.Request.Form["CategoriaId"].ToString());
+            var Archivo = HttpContext.Request.Form.Files;
+            
+            
+           
+            
+            // caso cuando se actualiza
+
+            if (Archivo.Count()>0)
+            {
+                var NombreArchivo = Guid.NewGuid().ToString();
+                var RurtaArchivoSubidas = Path.Combine(RutaPrincipal, @"imagenes\articulos");
+                var NuevaExtension = Path.GetExtension(Archivo[0].FileName);
+
+                string RutaImagenBD = Path.Combine(RutaPrincipal, articulo.UrlImagen.TrimStart('\\'));
+                if (System.IO.File.Exists(RutaImagenBD))
+                {
+                    System.IO.File.Delete(RutaImagenBD);
+
+                    using (FileStream FileStream = new FileStream(Path.Combine(RurtaArchivoSubidas, NombreArchivo + NuevaExtension), FileMode.Create))
+                    {
+                        Archivo[0].CopyTo(FileStream);
+                    }
+                    valores.Articulo.FechaCreacion = articulo.FechaCreacion;
+                    valores.Articulo.CategoriaId = CategoriaId;
+                    valores.Articulo.UrlImagen = @"imagenes\articulos\" + NombreArchivo + NuevaExtension;
+                   _Dominio.Update(valores.Articulo);
+
+                    return RedirectToAction("Index");
+
+                }
+
+             }
+            else
+            {
+                valores.Articulo.CategoriaId = CategoriaId;
+                valores.Articulo.UrlImagen = articulo.UrlImagen;
+
+                _Dominio.Update(valores.Articulo);
+                return RedirectToAction("Index");
+
+            }
+       
+
+            return View(valores);
+        }
+       #endregion
 
 
 
