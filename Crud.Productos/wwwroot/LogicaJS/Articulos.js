@@ -39,6 +39,8 @@ function cargarDatatable() {
         "width": "100%"
     });
 }
+
+
 function Delete(url) {
     Swal.fire({
         title: 'Esta seguro de eliminar este registro?',
@@ -71,12 +73,8 @@ function Delete(url) {
 }
 
 
-
-
   //Inicio cargando Imagen en contenerdor
-
 var FileImege = document.getElementById("UrlImagen");
-
 FileImege.addEventListener("change", function () {
 
     var contenedorFoto = document.getElementById("ContenedorImagen");
@@ -90,5 +88,5 @@ FileImege.addEventListener("change", function () {
     reader.readAsDataURL(Files);
 
 
-});
+  });
   // Fin cargando Imagen en contenerdor

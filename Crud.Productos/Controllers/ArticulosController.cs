@@ -97,12 +97,11 @@ namespace Crud.Productos.Controllers
                 ViewBag.Respuesta = Response;
             }
 
-                
-            
-         
 
 
-            return RedirectToAction("Create");
+            obj.ListaCategorias = _DominioCategoria.GetList();
+           
+            return View(obj);
         }
 
 
@@ -124,8 +123,24 @@ namespace Crud.Productos.Controllers
           return Json(_Dominio.Delete(id));
         }
 
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            //buscar el articulo en la base de datos
+            ArticulosViewModelCreate obj = new ArticulosViewModelCreate()
+            {
+                Articulo = _Dominio.GetById(id),
+                ListaCategorias = _DominioCategoria.GetList()
+            };
 
-     
+
+            //enviar articulo a la vista para mostrar
+
+            return View(obj);
+        }
+
+
+
 
         #endregion
 
