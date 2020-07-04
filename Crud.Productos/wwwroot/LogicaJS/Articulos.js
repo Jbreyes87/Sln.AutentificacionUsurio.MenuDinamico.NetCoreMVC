@@ -73,18 +73,22 @@ function Delete(url) {
 
 
 
-//Inicio cargando Imagen en contenerdor
+  //Inicio cargando Imagen en contenerdor
+
 var FileImege = document.getElementById("UrlImagen");
 
-var contenedorFoto = document.getElementById("ContenedorImagen");
+FileImege.addEventListener("change", function () {
 
-  FileImege.onchange = function () {
+    var contenedorFoto = document.getElementById("ContenedorImagen");
     var Files = FileImege.files[0];
+
     var reader = new FileReader();
+
     reader.onloadend = function () {
         contenedorFoto.src = reader.result;
     }
     reader.readAsDataURL(Files);
-   
-}
-        // Fin cargando Imagen en contenerdor
+
+
+});
+  // Fin cargando Imagen en contenerdor
