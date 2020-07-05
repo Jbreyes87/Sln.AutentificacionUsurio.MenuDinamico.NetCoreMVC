@@ -19,6 +19,14 @@ function cargarDatatable() {
             { "data": "fechaCreacion", "width": "20%" },
             { "data": "nombreCategoria", "width": "15%" },
             {
+                "data": "urlImagen",
+                "render": function (imagen) {
+                    console.log(imagen);
+                    debugger;
+                    return `<img src="../${imagen}" width="70" height="40"  class="rounded-sm" >`
+                },
+            },
+            {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
@@ -34,7 +42,24 @@ function cargarDatatable() {
             }
         ],
         "language": {
-            "emptyTable": "No hay registros"
+            "decimal": "",
+            "emptyTable": "No hay registros",
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+            "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+            "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "Mostrar _MENU_ Entradas",
+            "loadingRecords": "Cargando...",
+            "processing": "Procesando...",
+            "search": "Buscar:",
+            "zeroRecords": "Sin resultados encontrados",
+            "paginate": {
+                "first": "Primero",
+                "last": "Ultimo",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            }
         },
         "width": "100%"
     });

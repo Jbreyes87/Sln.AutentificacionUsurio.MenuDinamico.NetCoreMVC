@@ -63,17 +63,17 @@ namespace Crud.Productos.Controllers
 
 
             obj.Articulo.CategoriaId = Convert.ToInt32(Categoria);
-            obj.Articulo.FechaCreacion = DateTime.Now;
+            obj.Articulo.FechaCreacion = DateTime.Now.ToString();
             obj.Articulo.UrlImagen = @"imagenes\articulos\" + NombreArchivo + Extension;
 
-           
-                Response = _Dominio.Add(obj.Articulo);
+
+            Response = _Dominio.Add(obj.Articulo);
 
                 if (Response.IsSuccess)
                 {
+           
 
-
-                    if (Directory.Exists(RurtaArchivo))
+                if (Directory.Exists(RurtaArchivo))
                     {
                         using (FileStream FileStream = new FileStream(Path.Combine(RurtaArchivo, NombreArchivo + Extension), FileMode.Create))
                         {
@@ -119,9 +119,23 @@ namespace Crud.Productos.Controllers
         [HttpDelete]
         public IActionResult Delete(int id)
         {
+            string RutaPrincipal = _IWebHostEnvironment.WebRootPath;
+            string RutaArchivoBD = _Dominio.GetById(id).UrlImagen;
+            string RutaImagenBD = Path.Combine(RutaPrincipal, RutaArchivoBD.TrimStart('\\'));
 
-          return Json(_Dominio.Delete(id));
+            var resul = _Dominio.Delete(id);
+            //si el caso es true
+            if (resul.IsSuccess)
+            {
+                System.IO.File.Delete(RutaImagenBD);
+                return Json(resul);
+            }
+            //si el caso es false
+            return Json(resul);
         }
+
+
+       
 
         [HttpGet]
         public IActionResult Edit(int id)

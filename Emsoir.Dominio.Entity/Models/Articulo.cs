@@ -19,9 +19,13 @@ namespace Emsoir.Dominio.Entity.Models
         [MaxLength(300)]
         [Required(ErrorMessage = "la descripcion es obligatorio")]
         public string Descripcion { get; set; }
-        public DateTime FechaCreacion { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}")]
+        public string FechaCreacion { get; set; }
+
+      
        
+
         public string UrlImagen { get; set; }
 
         public int CategoriaId { get; set; }

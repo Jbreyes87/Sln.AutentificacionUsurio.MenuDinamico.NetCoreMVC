@@ -12,7 +12,7 @@ namespace Emsoir.Dominio.Entity.ViewModels
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public DateTime FechaCreacion { get; set; }
+        public string FechaCreacion { get; set; }
 
         public string UrlImagen { get; set; }
 
