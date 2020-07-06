@@ -1,3 +1,0 @@
-﻿
-1-jquery
-2-Microsoft.AspNetCore.MVC.Razor.Runtime.Compilation : este sirve para refrescar PaginaRazor automaticamente
