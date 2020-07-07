@@ -14,7 +14,7 @@ namespace Emsoir.Infraestructura.Data
             _configuration = configuration;
         }
 
-            public IDbConnection GetConection { get
+            public SqlConnection GetConection { get
             {
                 var sqlConection = new SqlConnection();
                 if (sqlConection == null) return null;

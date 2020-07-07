@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Emsoir.Dominio.Entity.Models
 {
-   public class Articulo
+    public class Articulo
     {
 
         [Dapper.Contrib.Extensions.Key]

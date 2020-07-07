@@ -1,8 +1,10 @@
 ﻿using System.Data;
+using System.Data.SqlClient;
+
 namespace Emsoir.Transversal.Common
 {
     public interface IConectionFactory
     {
-       IDbConnection GetConection { get; }
+        SqlConnection GetConection { get; }
     }
 }
