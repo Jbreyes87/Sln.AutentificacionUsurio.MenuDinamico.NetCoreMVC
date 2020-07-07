@@ -4,8 +4,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Emosir.Dominio.Interface;
+using Emsoir.Dominio.Entity.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Web.Models;
 
 namespace Web.Controllers
@@ -21,8 +24,7 @@ namespace Web.Controllers
 
         public IActionResult Index()
         {
-            var menu = _Dominio.CargarUsuarioRollMenuDinamico("john","123");
-            var res = menu;
+             Usuario u= JsonConvert.DeserializeObject<Usuario>(HttpContext.Session.GetString("gay"));
             return View();
         }
 
