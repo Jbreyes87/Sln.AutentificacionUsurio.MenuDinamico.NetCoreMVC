@@ -23,6 +23,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emosir.Dominio.Interface", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emsoir.Dominio.Cors", "Emsoir.Dominio.Cors\Emsoir.Dominio.Cors.csproj", "{5DA578CF-BAB2-44ED-9DD8-78E24438E89D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{A3DFC1C9-753A-4776-AACE-845E06F79B24}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{5DA578CF-BAB2-44ED-9DD8-78E24438E89D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DA578CF-BAB2-44ED-9DD8-78E24438E89D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DA578CF-BAB2-44ED-9DD8-78E24438E89D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3DFC1C9-753A-4776-AACE-845E06F79B24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3DFC1C9-753A-4776-AACE-845E06F79B24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3DFC1C9-753A-4776-AACE-845E06F79B24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3DFC1C9-753A-4776-AACE-845E06F79B24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

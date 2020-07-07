@@ -8,8 +8,8 @@ namespace Emsoir.Dominio.Entity.ViewModels
    public class UsuarioMenuViewModels
     {
 
-        public Usuario Usuario { get; set; }
-        public Roll Roll { get; set; }
+        public Usuario Usuario { get; set; } = new Usuario();
+        public Roll Roll { get; set; } = new Roll();
 
         public List<RollMenuViewModels> RollMenu { get; set; }
 

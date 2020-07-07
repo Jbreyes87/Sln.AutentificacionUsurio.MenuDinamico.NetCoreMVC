@@ -17,9 +17,13 @@ namespace Emsoir.Infraestructura.Repository
         {
             _ConectionFactory = ConectionFactory;
         }
+
+
+
         public UsuarioMenuViewModels CargarUsuarioRollMenuDinamico(string nombre, string password)
         {
             UsuarioMenuViewModels obj = new UsuarioMenuViewModels();
+            
 
             using (SqlConnection conn = _ConectionFactory.GetConection)
             {
@@ -50,11 +54,11 @@ namespace Emsoir.Infraestructura.Repository
                         obj.Roll.RolId = Convert.ToInt32(dtRoles.Rows[i]["RolId"]);
                         obj.Roll.Nombre = dtRoles.Rows[i]["Nombre"].ToString();
                     }
-
+                    obj.RollMenu = new List<RollMenuViewModels>();
                     for (int i = 0; i < dtMenu.Rows.Count; i++)
                     {
                         var RolMenu = new RollMenuViewModels();
-                        obj.RollMenu = new List<RollMenuViewModels>();
+                        
 
                         RolMenu.RolId = Convert.ToInt32(dtMenu.Rows[i]["RolId"]);
                         RolMenu.MenuId = Convert.ToInt32(dtMenu.Rows[i]["MenuId"]);
@@ -66,11 +70,11 @@ namespace Emsoir.Infraestructura.Repository
 
                     }
                     //obj.RollMenu = obj.RollMenu;
-
+                    obj.MenuPagina = new List<MenuPaginaViewModels>();
                     for (int i = 0; i < dtPaginas.Rows.Count; i++)
                     {
                         var Pagina = new MenuPaginaViewModels();
-                        obj.MenuPagina = new List<MenuPaginaViewModels>();
+                     
 
                         Pagina.MenuId = Convert.ToInt32(dtPaginas.Rows[i]["MenuId"]);
                         Pagina.PaginaId = Convert.ToInt32(dtPaginas.Rows[i]["PaginaId"]);
