@@ -26,22 +26,24 @@ namespace Web.Controllers
     
         public IActionResult Index()
         {
-            Usuario obj = new Usuario();
-            obj.NombreUsuario = "john";
-            obj.Password = "john12";
-            //SetObject("Usuario", obj);
-            //SetObject("Roll", "omar");
-            HttpContext.Session.SetString("gay", JsonConvert.SerializeObject(obj));
+            
            
-            
-            
-
+           
             return View();
         }
-    
+
+        public ActionResult CerrarSession()
+        {
+            HttpContext.Session.SetString("Usuario","");
+            HttpContext.Session.SetString("Roll", "");
+            HttpContext.Session.SetString("Menus", "");
+            HttpContext.Session.SetString("Paginas", "");
+
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
-        public IActionResult ValidarUsuario(Usuario request)
+        public ActionResult ValidarUsuario(Usuario request)
         {
            
             Response<bool> respuesta = new Response<bool>();
@@ -55,10 +57,12 @@ namespace Web.Controllers
             {
                var obj = _DominioMenu.CargarUsuarioRollMenuDinamico(request.NombreUsuario, request.Password);
 
-                 
+                HttpContext.Session.SetString("Usuario", JsonConvert.SerializeObject(obj.Usuario));
+                HttpContext.Session.SetString("Roll", JsonConvert.SerializeObject(obj.Roll));
+                HttpContext.Session.SetString("Menus", JsonConvert.SerializeObject(obj.RollMenu));
+                HttpContext.Session.SetString("Paginas", JsonConvert.SerializeObject(obj.MenuPagina));
 
-
-                return RedirectToAction("Index","PaginaPrincipal");
+                return Json(respuesta); 
                
 
             }

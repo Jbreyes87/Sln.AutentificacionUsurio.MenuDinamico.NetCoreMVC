@@ -1,7 +1,80 @@
 ﻿
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h1>Index</h1>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="container">
+            <br />
+            <br />
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form method="post" name="FrmLogin" id="FrmLogin">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="text" class="form-control" name="NombreUsuario" placeholder="Ingrese Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
+                        </div>
+                        <br>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" name="Password" class="form-control" placeholder="******" aria-describedby="sizing-addon1" required>
+                        </div>
+                        <br>
+                        @*<button class="btn btn-lg btn-primary btn-block btn-signin" id="IngresoLog" type="submit">Entrar</button>*@
+                        <input type="submit" value="Ingresar" class="btn btn-primary btn-sm btn-block" />
+                        <div class="opcioncontra"><a href="">Olvidaste tu contraseña?</a></div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#FrmLogin").submit(function (e) {
+        //form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const UrlOrigen = "@Url.Content("~/Login/ValidarUsuario")"
+            const UrlDestino = "@Url.Content("~/PaginaPrincipal/Index")"
+            var form = $("#FrmLogin"); //Identificamos el formulario por su id
+            var datos = form.serialize();
+            $.ajax({
+                type: "POST",
+                url: UrlOrigen,
+                data: datos,
+                success: function (Response) {
+                    debugger;
+                    var JsonString = JSON.stringify(Response);
+                    var objetoJosn = JSON.parse(JsonString);
+             
+                    debugger;
+                    if (objetoJosn.isSuccess){
+                        window.location.replace(UrlDestino);
+                    } else {
+                        alert(objetoJosn.mensaje);
+                    }
+                },
+                error: function (r) {
+                    alert("Error del servidor");
+                }
+            });
+        });
+    });
+</script>

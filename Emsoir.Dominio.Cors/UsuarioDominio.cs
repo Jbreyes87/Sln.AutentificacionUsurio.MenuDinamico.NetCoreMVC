@@ -40,6 +40,11 @@ namespace Emsoir.Dominio.Cors
                     Response.IsSuccess = true;
                     Response.Mensaje = "ok!";
                 }
+                else
+                {
+                    Response.IsSuccess = false;
+                    Response.Mensaje = "Usuario o Contraseña Incorrectas!";
+                }
 
             }
             catch (Exception ex)

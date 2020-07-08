@@ -1,4 +1,32 @@
-﻿<!DOCTYPE html>
+﻿@using Emsoir.Dominio.Entity.ViewModels,
+@using Emsoir.Dominio.Entity.Models,
+@using Newtonsoft.Json,
+
+
+
+@{
+    UsuarioMenuViewModels s = new UsuarioMenuViewModels();
+    s.Usuario = ViewBag.usuario;
+
+    var usuario = ViewBag.usu;
+    var usuario1 = usuario;
+
+
+    if (s.Usuario.NombreUsuario != null)
+    {
+        s.Roll = ViewBag.Roll;
+        s.RollMenu = ViewBag.Menu;
+        s.MenuPagina = ViewBag.Paginas;
+       
+
+    }
+    else
+    {
+
+    }
+
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,7 +39,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Web</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@s.Roll.Nombre</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -19,11 +47,49 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="PaginaPrincipal" asp-action="Index">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+                        @foreach (var item in s.RollMenu)
+                        {
+                            if (item.Flag_Menu == "Padre")
+                            {
+                                //crea un dowdonlist
+                                var obtenerHijos = s.MenuPagina.Where(x => x.MenuId == item.MenuId).ToList();
+                                <div class="dropdown">
+                                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        @item.Nombre
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        @foreach (var itemHijos in obtenerHijos)
+                                        {
+
+                                            <a class="dropdown-item" href="#">@itemHijos.Nombre</a>
+
+
+                                        }
+                                    </div>
+                                </div>
+
+
+                            }
+                            //si el menu actua como hijo
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="PaginaPrincipal" asp-action="Index">@item.Nombre</a>
+                                </li>
+
+                            }
+
+
+                        }
+
+
+
+
+
+
+
                     </ul>
                 </div>
             </div>
