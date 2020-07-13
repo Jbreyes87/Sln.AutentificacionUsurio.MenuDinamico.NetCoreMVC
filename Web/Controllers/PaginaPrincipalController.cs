@@ -19,6 +19,7 @@ namespace Web.Controllers
             ViewBag.Roll = JsonConvert.DeserializeObject<Roll>(HttpContext.Session.GetString("Roll"));
             ViewBag.Menu = JsonConvert.DeserializeObject<List<RollMenuViewModels>>(HttpContext.Session.GetString("Menus"));
             ViewBag.Paginas = JsonConvert.DeserializeObject<List<MenuPaginaViewModels>>(HttpContext.Session.GetString("Paginas"));
+            ViewBag.vacio = null;
 
             if (ViewBag.usuario.NombreUsuario == null)
             {
